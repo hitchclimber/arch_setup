@@ -77,6 +77,16 @@ Move the hooks file from repo to `/etc/pacman.d/hooks/` and make it executable.
 
 Configure `/etc/systemd/timesyncd.conf` and enable the service. Might be necessary to run `timedatectl set-ntp true` as well.
 
+## User profile
+
+
+`.profile` -> `.zprofile` -> `.xinitrc`
+
+`.profile` sets the login shell (zsh) and sources `.zprofile` which executes `startx` which reads settings from `.xinitrc`.
+
+- add oh-my-zsh and fast-syntax-highlighting to `.zshrc`
+- get polybar settings from [here](https://gitlab.com/stephan-raabe/dotfiles)
+
 
 
 
