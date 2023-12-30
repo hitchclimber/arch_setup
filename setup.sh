@@ -13,7 +13,7 @@ echo "127.0.0.1" >> /etc/hosts
 echo "::1" >> /etc/hosts
 echo "127.0.0.1 arch.localdomain arch" >> /etc/hosts
 
-pacman -Sy linux-headers openssh xorg webkit2gtk # correct drivers for your graphics card, check wiki if Optimus is needed
+pacman -S linux-headers openssh xorg webkit2gtk zsh xwallpaper dunst zathura zathura-pdf-mupdf wget curl sxiv firefox fuse-overlayfs pulseaudio pulsemixer pulseaudio-bluetooth wpa-supplicant # correct drivers for your graphics card, check wiki if Optimus is needed
 systemctl enable NetworkManager
 systemctl enable reflector.timer
 
