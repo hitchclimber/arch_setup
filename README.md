@@ -67,6 +67,7 @@ Find UUIDs of root and EFI partitions (using `blkid`) and add them to `/etc/defa
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=<root UUID>:cryptroot root=/dev/mapper/cryptroot"
 ```
 
+Put `40_custom` in `/etc/grub.d/` and make it executable.
 Then install and configure GRUB as per usual.
 
 ## Pacman hooks
