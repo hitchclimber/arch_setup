@@ -87,6 +87,35 @@ Configure `/etc/systemd/timesyncd.conf` and enable the service. Might be necessa
 - add oh-my-zsh and fast-syntax-highlighting to `.zshrc`
 - get polybar settings from [here](https://gitlab.com/stephan-raabe/dotfiles)
 
+## DWM
+
+### Patches
+
+- alwayscenter
+- fibonacci
+- fullscreen
+- movestack
+- vanitygaps
+- activetagindicator
+- status2d
+- shift tools
+- systray
+- alpha
+- status2d -> check out [](https://github.com/sipi/dwmstatus)
+- splitstatus
+
+### st
+
+- scrollback
+- alpha
+- boxdraw
+- clipboard
+- font2
+- ligatures
+- wide glyphs
+- xresources
+
+
 
 
 
