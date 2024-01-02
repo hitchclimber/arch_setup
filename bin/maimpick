@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# This is bound to Shift+PrintScreen by default, requires maim. It lets you
+# choose the kind of screenshot to take, including copying the image or even
+# highlighting an area to copy. scrotcucks on suicidewatch right now.
+
+# variables
+output="$(date '+%y%m%d-%H%M-%S').png"
+folder="$HOME/Pictures/screenshots"
+xclip_cmd="xclip -sel clip -t image/png"
+
+current_screen() {
+    # original author: naelstrof
+    # https://gist.github.com/naelstrof/f9b74b5221cdc324c0911c89a47b8d97
+    MONITORS=$(xrandr | grep -o '[0-9]*x[0-9]*[+-][0-9]*[+-][0-9]*')
+    # Get the location of the mouse
+    XMOUSE=$(xdotool getmouselocation | awk -F "[: ]" '{print $2}')
+    YMOUSE=$(xdotool getmouselocation | awk -F "[: ]" '{print $4}')
+
+    for mon in ${MONITORS}; do
+        # Parse the geometry of the monitor
+        MONW=$(echo "${mon}" | awk -F "[x+]" '{print $1}')
+        MONH=$(echo "${mon}" | awk -F "[x+]" '{print $2}')
+        MONX=$(echo "${mon}" | awk -F "[x+]" '{print $3}')
+        MONY=$(echo "${mon}" | awk -F "[x+]" '{print $4}')
+        # Use a simple collision check
+        if [ $((XMOUSE)) -ge $((MONX)) ]; then
+            if [ $(( XMOUSE )) -le $((MONX+MONW)) ]; then
+                if [ $((YMOUSE)) -ge $((MONY)) ]; then
+                    if [ $((YMOUSE)) -le $((MONY+MONH)) ]; then
+                        # We have found our monitor!
+                        maim -g "${MONW}x${MONH}+${MONX}+${MONY}" "${folder}"/pic-screen-"${output}"
+                        exit 0
+                    fi
+                fi
+            fi
+        fi
+    done
+}
+
+case "$(printf "a selected area\\ncurrent screen\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | dmenu -l 6 -i -p "Screenshot which area?")" in
+    "a selected area") maim -s "${folder}"/pic-selected-"${output}" ;;
+    "current screen") current_screen ;;
+    "current window") maim -q -d 0.2 -i "$(xdotool getactivewindow)" "${folder}"/pic-window-"${output}" ;;
+    "full screen") maim -q -d 0.2 "${folder}"/pic-full-"${output}" ;;
+    "a selected area (copy)") maim -s | ${xclip_cmd} ;;
+    "current window (copy)") maim -q -d 0.2 -i "$(xdotool getactivewindow)" | ${xclip_cmd} ;;
+    "full screen (copy)") maim -q -d 0.2 | ${xclip_cmd} ;;
+esac

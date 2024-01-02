@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# This script is the SUDO_ASKPASS variable, meaning that it will be used as a
+# password prompt if needed.
+
+# dmenu -p "$1" -fn Monospace-16 -nf '#204a87' -nb '#204a87' -sf '#111111' -sb '#babdb6' <&-  && echo -e '/n'
+dmenu  -P -p  "$1" <&-

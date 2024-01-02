@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+sudo -A openvpn --config /home/michael/.config/openvpn/tum.eduvpn.lrz.de_tum-split-node-01_20231027_arch.ovpn --daemon && notify-send -t 1200 ' Connected to TUM_LRZ'
+
+
+

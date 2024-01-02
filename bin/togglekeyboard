@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+toggle=$(setxkbmap -query | grep layout | awk -F: '{gsub(/^[ \t]+/, "", $2); print $2}')
+
+if [  ${toggle} = "us"  ]; then
+	setxkbmap de && notify-send --icon="/usr/share/icons/candy-icons/devices/scalable/input-keyboard.svg" -t 1200 "Keyboard set to DE"
+else
+	setxkbmap us && notify-send --icon="/usr/share/icons/candy-icons/devices/scalable/input-keyboard.svg" -t 1200 "Keyboard set to US"
+fi
+

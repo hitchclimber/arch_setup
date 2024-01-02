@@ -116,6 +116,10 @@ Configure `/etc/systemd/timesyncd.conf` and enable the service. Might be necessa
 - wide glyphs
 - xresources
 
+## install fonts and missing scripts
+
+- nerd fonts
+- scripts in `~/.local/bin/`
 
 
 

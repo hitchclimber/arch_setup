@@ -1,0 +1,7 @@
+#!/bin/sh
+
+uid=$(id -u "$SUDO_USER")
+gid=$(id -g "$SUDO_USER")
+
+mount -t cifs //tuwzg3b-nas1.forst.wzw.tum.de/Public /home/michael/USB -o username=ga47qam,domain=ADS,uid="$uid",gid="$gid"
+
